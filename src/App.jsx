@@ -20,6 +20,7 @@ function App() {
 
   // Noe av den samme logikken for sort for LocalStorage. Når en endring foregår så lagrer vi til LS.
   const [sortOption, setSortOption] = useState(() => {
+    const savedSort = localStorage.getItem("sortOption");
     // Dersom savedSort er undefined så gjør vi om verdiene på sortBy til newest og hideCompleted blir satt som false.
     return JSON.parse(savedSort) || { sortBy: "newest", hideCompleted: false };
   });
