@@ -4,7 +4,7 @@ import Header from "./components/Header.jsx";
 import { TodoContext } from "./context/TodoContext.jsx";
 
 function App() {
-  const { todoData } = useContext(TodoContext);
+  const { todoData, addTask, deleteTask, editTask } = useContext(TodoContext);
 
   //  Når en endring foregår så lagrer vi til LS.
   const [sortOption, setSortOption] = useState(() => {
@@ -18,22 +18,6 @@ function App() {
     localStorage.setItem("todoData", JSON.stringify(todoData));
     localStorage.setItem("sortOption", JSON.stringify(sortOption));
   }, [todoData, sortOption]);
-  //New task function.
-  function addTask(newTask) {
-    setToDoData((prev) => [...prev, newTask]);
-  }
-  // Delete task function, oppdaterer setToDoData, men kun uten IDen som vi velger. (Task ID matcher ikke så den blir tatt ut)
-  function deleteTask(id) {
-    setToDoData((prev) => prev.filter((task) => task.id !== id));
-  }
-
-  //Edit task function, trenger ID for å vite hvilken task som skal oppdateres. Så trenger vi dataen som skal oppdateres inn. Mapper over previous state som er task. Ternary; Hvis task ID er samme ID som vi har sendt til funksjon = return et nytt objekt der vi henter ut ...spreaded task og legger til updated task. Og om ID ikke matcher så skal task være uendret.
-
-  function editTask(id, updatedTask) {
-    setToDoData((prev) =>
-      prev.map((task) => (task.id === id ? { ...task, ...updatedTask } : task)),
-    );
-  }
 
   //Lager en variabel som er en kopi av vår toDoData(..) men vi tar et filter på som sørger for at vi filtrerer det som er checked. Deretter adder vi .sort.
   const sortedData = [...todoData]
