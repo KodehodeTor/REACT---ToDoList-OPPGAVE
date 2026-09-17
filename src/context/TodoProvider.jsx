@@ -14,6 +14,13 @@ export default function TodoProvider({ children }) {
       : [];
   });
 
+  //  Sort state: Når en endring foregår så lagrer vi til LS.
+  const [sortOption, setSortOption] = useState(() => {
+    const savedSort = localStorage.getItem("sortOption");
+    // Dersom savedSort er undefined så gjør vi om verdiene på sortBy til newest og hideCompleted blir satt som false.
+    return JSON.parse(savedSort) || { sortBy: "newest", hideCompleted: false };
+  });
+
   //New task function.
   function addTask(newTask) {
     setToDoData((prev) => [...prev, newTask]);
@@ -33,7 +40,16 @@ export default function TodoProvider({ children }) {
   }
 
   return (
-    <TodoContext.Provider value={{ todoData, addTask, deleteTask, editTask }}>
+    <TodoContext.Provider
+      value={{
+        todoData,
+        addTask,
+        deleteTask,
+        editTask,
+        sortOption,
+        setSortOption,
+      }}
+    >
       {children}
     </TodoContext.Provider>
   );
