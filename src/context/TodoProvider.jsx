@@ -26,6 +26,23 @@ export default function TodoProvider({ children }) {
     localStorage.setItem("sortOption", JSON.stringify(sortOption));
   }, [todoData, sortOption]);
 
+  //Lager en variabel som er en kopi av vår toDoData(..) men vi tar et filter på som sørger for at vi filtrerer det som er checked. Deretter adder vi .sort.
+  const sortedData = [...todoData]
+    .filter((task) => !task.completed || !sortOption.hideCompleted)
+    // A og B representerer hva som skal bli sorted i forhold til hva.
+    .sort((a, b) => {
+      switch (sortOption.sortBy) {
+        case "a-to-z":
+          return a.name.localeCompare(b.name);
+        case "z-to-a":
+          return b.name.localeCompare(a.name);
+        case "oldest":
+          return a.timestamp - b.timestamp;
+        case "newest":
+          return b.timestamp - a.timestamp;
+      }
+    });
+
   //New task function.
   function addTask(newTask) {
     setToDoData((prev) => [...prev, newTask]);
@@ -48,6 +65,7 @@ export default function TodoProvider({ children }) {
     <TodoContext.Provider
       value={{
         todoData,
+        sortedData,
         addTask,
         deleteTask,
         editTask,
