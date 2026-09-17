@@ -4,7 +4,7 @@ import Header from "./components/Header.jsx";
 import { TodoContext } from "./context/TodoContext.jsx";
 
 function App() {
-  const { todoData, addTask } = useContext(TodoContext);
+  const { todoData } = useContext(TodoContext);
 
   //  Når en endring foregår så lagrer vi til LS.
   const [sortOption, setSortOption] = useState(() => {
@@ -39,7 +39,7 @@ function App() {
   return (
     <>
       {/* Vi sender sortOption og setSortOption til Header */}
-      <Header data={{ addTask, sortOption, setSortOption }} />
+      <Header data={{ sortOption, setSortOption }} />
       {/* Vi sender todoData, editTask og deleteTask til ToDoList data */}
       <ToDoList data={{ sortedData }} />
     </>
