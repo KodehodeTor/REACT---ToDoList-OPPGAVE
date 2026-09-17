@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ToDoList from "./components/ToDoList.jsx";
 import Header from "./components/Header.jsx";
+import { TodoContext } from "./context/TodoContext.jsx";
 
 function App() {
-  // Vi lager en callback funksjon til useState så det blir initial state på useState. Dette er for LocalStorage.
+  const { todoData } = useContext(TodoContext);
 
-  const [todoData, setToDoData] = useState(() => {
-
-  // Noe av den samme logikken for sort for LocalStorage. Når en endring foregår så lagrer vi til LS.
+  //  Når en endring foregår så lagrer vi til LS.
   const [sortOption, setSortOption] = useState(() => {
     const savedSort = localStorage.getItem("sortOption");
     // Dersom savedSort er undefined så gjør vi om verdiene på sortBy til newest og hideCompleted blir satt som false.
