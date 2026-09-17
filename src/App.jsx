@@ -4,7 +4,7 @@ import Header from "./components/Header.jsx";
 import { TodoContext } from "./context/TodoContext.jsx";
 
 function App() {
-  const { todoData } = useContext(TodoContext);
+  const { todoData, sortOption } = useContext(TodoContext);
 
   //Vi linker useEffect til state, todoData og sortOption. Så hver gang noe blir endret så blir useEffect brukt som gir oss en mulighet til å lagre til localStorage. Update data = lagre. Vi trenger deretter å rendre det som er lagt til i LS.
   useEffect(() => {
@@ -32,7 +32,7 @@ function App() {
   return (
     <>
       {/* Vi sender sortOption og setSortOption til Header */}
-      <Header data={{ sortOption, setSortOption }} />
+      <Header />
       {/* Vi sender todoData, editTask og deleteTask til ToDoList data */}
       <ToDoList data={{ sortedData }} />
     </>
