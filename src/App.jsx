@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import ToDoList from "./components/ToDoList.jsx";
 import Header from "./components/Header.jsx";
-import { TodoContext } from "./context/TodoContext.jsx";
+import { useTodos } from "./context/useTodos.js";
 
 function App() {
-  const { sortedData } = useContext(TodoContext);
+  const { sortedData } = useTodos();
 
   return (
     <>
