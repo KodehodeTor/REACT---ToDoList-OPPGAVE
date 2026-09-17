@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ToDoItem({ data: { task, editTask, deleteTask } }) {
+export default function ToDoItem({ task }) {
   //VI ønsker en state som sjekker om input field er ReadOnly. Den starter som true (ReadOnly)
   const [isReadOnly, setIsReadOnly] = useState(true);
   // Den starter som navnet den får fra task data.
@@ -9,6 +9,7 @@ export default function ToDoItem({ data: { task, editTask, deleteTask } }) {
     // Toggle for task completed så vi kan skru den av og på. (complete flip)
     editTask(task.id, { ...task, completed: !task.completed });
   }
+
   // Går inn i timestamp i task objektet, som gjør dato til string, "en-GB" er locale format regler. (British English formatting)
   const formattedTime = task.timestamp.toLocaleString("en-GB");
   function handleEdit() {
