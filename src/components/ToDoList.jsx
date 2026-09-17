@@ -1,8 +1,6 @@
 import ToDoItem from "./ToDoItem.jsx";
 import { useTodos } from "../context/useTodos.js";
 
-//Når vi rendrer ToDoItem så snder vi den videre. (Dette er propdrilling og må endres på i etterkant Tor!)
-
 export default function ToDoList() {
   const { sortedData } = useTodos();
   if (sortedData.length === 0) {
