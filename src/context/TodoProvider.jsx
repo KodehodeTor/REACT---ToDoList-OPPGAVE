@@ -1,5 +1,5 @@
 import { TodoContext } from "./TodoContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function TodoProvider({ children }) {
   const [todoData, setToDoData] = useState(() => {
@@ -20,6 +20,11 @@ export default function TodoProvider({ children }) {
     // Dersom savedSort er undefined så gjør vi om verdiene på sortBy til newest og hideCompleted blir satt som false.
     return JSON.parse(savedSort) || { sortBy: "newest", hideCompleted: false };
   });
+  //Vi linker useEffect til state, todoData og sortOption. Så hver gang noe blir endret så blir useEffect brukt som gir oss en mulighet til å lagre til localStorage. Update data = lagre. Vi trenger deretter å rendre det som er lagt til i LS.
+  useEffect(() => {
+    localStorage.setItem("todoData", JSON.stringify(todoData));
+    localStorage.setItem("sortOption", JSON.stringify(sortOption));
+  }, [todoData, sortOption]);
 
   //New task function.
   function addTask(newTask) {

@@ -1,16 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import ToDoList from "./components/ToDoList.jsx";
 import Header from "./components/Header.jsx";
 import { TodoContext } from "./context/TodoContext.jsx";
 
 function App() {
   const { todoData, sortOption } = useContext(TodoContext);
-
-  //Vi linker useEffect til state, todoData og sortOption. Så hver gang noe blir endret så blir useEffect brukt som gir oss en mulighet til å lagre til localStorage. Update data = lagre. Vi trenger deretter å rendre det som er lagt til i LS.
-  useEffect(() => {
-    localStorage.setItem("todoData", JSON.stringify(todoData));
-    localStorage.setItem("sortOption", JSON.stringify(sortOption));
-  }, [todoData, sortOption]);
 
   //Lager en variabel som er en kopi av vår toDoData(..) men vi tar et filter på som sørger for at vi filtrerer det som er checked. Deretter adder vi .sort.
   const sortedData = [...todoData]
