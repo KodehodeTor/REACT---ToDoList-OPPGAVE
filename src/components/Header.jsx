@@ -4,8 +4,8 @@ import { TodoContext } from "../context/TodoContext";
 // NPM pakke som lar os genere unike IDer på en enkel måte.
 import { v4 as uuid } from "uuid";
 
-export default function Header({ data: { setSortOption, sortOption } }) {
-  const { addTask } = useContext(TodoContext);
+export default function Header() {
+  const { addTask, sortOption, setSortOption } = useContext(TodoContext);
   // useState starter som en tom string.
   const [newTaskName, setNewTaskName] = useState("");
 
