@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { useState } from "react";
+import { useTodos } from "../context/useTodos";
 
 export default function ToDoItem({ task }) {
-  const { editTask, deleteTask } = useContext(TodoContext);
+  const { editTask, deleteTask } = useTodos();
   //VI ønsker en state som sjekker om input field er ReadOnly. Den starter som true (ReadOnly)
   const [isReadOnly, setIsReadOnly] = useState(true);
   // Den starter som navnet den får fra task data.
