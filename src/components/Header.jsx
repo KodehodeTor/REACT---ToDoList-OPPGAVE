@@ -1,11 +1,11 @@
 // useState fra REACT
-import { useState, useContext } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { useState } from "react";
+import { useTodos } from "../context/useTodos";
 // NPM pakke som lar os genere unike IDer på en enkel måte.
 import { v4 as uuid } from "uuid";
 
 export default function Header() {
-  const { addTask, sortOption, setSortOption } = useContext(TodoContext);
+  const { addTask, sortOption, setSortOption } = useTodos();
   // useState starter som en tom string.
   const [newTaskName, setNewTaskName] = useState("");
 
