@@ -54,9 +54,9 @@ function App() {
     .sort((a, b) => {
       switch (sortOption.sortBy) {
         case "a-to-z":
-          return a.name.localCompare(b.name);
+          return a.name.localeCompare(b.name);
         case "z-to-a":
-          return b.name.localCompare(a.name);
+          return b.name.localeCompare(a.name);
         case "oldest":
           return a.timestamp - b.timestamp;
         case "newest":
