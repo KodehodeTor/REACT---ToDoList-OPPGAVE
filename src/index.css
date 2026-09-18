@@ -47,11 +47,20 @@ h1 {
 }
 
 form {
+  margin-left: 2rem;
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
   max-width: 30rem;
   width: 100%;
+}
+
+label {
+  margin-left: 1rem;
+}
+
+select {
+  border-radius: 0.4rem;
 }
 
 input {
@@ -68,8 +77,13 @@ input:focus {
   border-color: #4dabf7;
 }
 
+form button {
+  width: 9rem;
+}
+
 button {
-  padding: 0.75rem 1.5rem;
+  width: 6rem;
+  padding: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
