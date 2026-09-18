@@ -10,12 +10,12 @@
 
 body.light #root {
   min-height: 100vh;
-  background-color: whitesmoke;
+  background-color: white;
   color: black;
 }
 
 body.dark #root {
   min-height: 100vh;
   background-color: #222;
-  color: whitesmoke;
+  color: white;
 }
