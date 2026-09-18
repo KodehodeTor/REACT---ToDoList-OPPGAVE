@@ -5,7 +5,7 @@ export default function TodoProvider({ children }) {
   const [todoData, setToDoData] = useState(() => {
     const savedData = localStorage.getItem("todoData");
 
-    // Når vi stringify toDoData så klarer den ikke å hente ut date objektet grunnet kompleksistet. Som løsning så redefiner vi timestamp som new Date.
+    //    Når tododate lagres med JSON.stringify blir objektet i timestamp lagret som en string. Vi henter data fra LocalStorage med JSON.parse, konverterer tilbake timestamp til et date-objekt med new Date()
     return savedData
       ? JSON.parse(savedData).map((task) => ({
           ...task,
@@ -17,7 +17,7 @@ export default function TodoProvider({ children }) {
   //  Henter sortOption fra LS. Hvis ingenting er lagret bruker vi standard verdier.
   const [sortOption, setSortOption] = useState(() => {
     const savedSort = localStorage.getItem("sortOption");
-    // Dersom savedSort er undefined så gjør vi om verdiene på sortBy til newest og hideCompleted blir satt som false.
+    // Henter sortOption fra LocalStorage. Hvis ingenting er lagret returner getItem null og vi faller tilbake på sortBy: "Newest" og hideCompleted "false"
     return JSON.parse(savedSort) || { sortBy: "newest", hideCompleted: false };
   });
   //Når todoData eller sortOption endres lagrer vi det i LocalStorage.
@@ -48,7 +48,7 @@ export default function TodoProvider({ children }) {
     setToDoData((prev) => [...prev, newTask]);
   }
 
-  // Delete task function, oppdaterer setToDoData, men kun uten IDen som vi velger. (Task ID matcher ikke så den blir tatt ut)
+  // Delete task function, filtrerer previous todoData, task med ID som IKKE matched ID-en vi ønsker å slette beholdes. Tasken med match ID blir false og filtrert ut.
   function deleteTask(id) {
     setToDoData((prev) => prev.filter((task) => task.id !== id));
   }

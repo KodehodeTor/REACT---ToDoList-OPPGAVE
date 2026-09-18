@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@swc/helpers": "^0.5.23",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-toggle-dark-mode": "^2.0.0",
     "uuid": "^14.0.2"
   },
   "devDependencies": {
